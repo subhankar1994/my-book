@@ -89,6 +89,24 @@ function drop_table_my_book()
 register_deactivation_hook( __FILE__, 'drop_table_my_book' );
 register_uninstall_hook(  __FILE__, 'drop_table_my_book' );
 
+add_action('wp_ajax_mybooklibrary', 'my_books_ajax_handler');
+
+function my_books_ajax_handler(){
+	if($_REQUEST['param'] == 'save_book'){
+		global $wpdb;
+		$wpdb->insert(my_book_table(), array(
+			'name' => $_REQUEST['name'],
+			'author' => $_REQUEST['author'],
+			'about' => $_REQUEST['about'],
+			'book_image' => $_REQUEST['image'],
+
+		));
+		echo json_encode(array('status' => 1, 'message' => 'Book Added Successfully!'));
+	}
+	wp_die();
+	
+}
+
 
 
 
