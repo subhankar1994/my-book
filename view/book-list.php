@@ -31,8 +31,8 @@ $all_books = $wpdb->get_results($wpdb->prepare("SELECT * FROM ".my_book_table().
                 <td><?php echo $ab['about']; ?></td>
                 <td><img src="<?php echo $ab['book_image']; ?>" width="80px" height="80px"></td>
                 <td>
-                    <a href="javascript:void(0);" class="btn btn-info">Edit</a>
-                    <a href="javascript:void(0);" class="btn btn-danger">Delete</a>
+                    <a href="admin.php?page=update-book&book_id=<?php echo $ab['id']; ?>" data-id="<?php echo $ab['id']; ?>" class="btn btn-info">Edit</a>
+                    <a href="javascript:void(0);" class="btn btn-danger bookdelete" data-id="<?php echo $ab['id']; ?>">Delete</a>
                 </td>
             </tr>
         <?php
